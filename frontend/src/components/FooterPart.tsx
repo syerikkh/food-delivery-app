@@ -11,7 +11,7 @@ export const FooterPart = () => {
                 <div className='w-full h-full absolute left-0 top-0'>
                     <img src="BackgroundImage.png" className='w-full h-full object-cover' alt="" />
                 </div>
-                <div className='w-1/2 h-1/2 flex flex-col items-center'>
+                <div className='w-[1440px] px-10 h-1/2 flex flex-col items-center'>
                     <div className='border-b-2 flex flex-col items-center w-full pb-8'>
                         <div className='flex gap-2 items-center'>
                             <PineconeLogoWhite />

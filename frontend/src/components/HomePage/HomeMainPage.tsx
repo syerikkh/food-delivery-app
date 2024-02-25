@@ -3,22 +3,53 @@ import { BookIcon } from '../Icons/BookIcon'
 import { CheckProcessCard } from '../CheckProcessCard'
 import { ClockIcon } from '../Icons/ClockIcon'
 import { HealthIcon } from '../Icons/HealthIcon'
-import { TitleIcon } from '../Icons/TitleIcon'
+import { FoodsCard } from '../FoodsCard'
+import { Category } from '../Category'
 
 export const HomeMainPage = () => {
     return (
-        <div className='w-full px-52 mt-20 mb-20 flex flex-col'>
+        <div className='w-[1440px] px-10 m-auto mt-20 mb-20 flex flex-col'>
             <div className='flex justify-between items-center'>
                 <CheckProcessCard icon={<BookIcon />} title={"Хүргэлтийн төлөв хянах"} description={"Захиалга бэлтгэлийн явцыг хянах"} />
                 <CheckProcessCard icon={<ClockIcon />} title={"Шуурхай хүргэлт"} description={"Захиалга бэлтгэлийн явцыг хянах"} />
                 <CheckProcessCard icon={<HealthIcon />} title={"Эрүүл, баталгаат орц"} description={"Захиалга бэлтгэлийн явцыг хянах"} />
                 <CheckProcessCard icon={<BookIcon />} title={"Хоолны өргөн сонголт"} description={"Захиалга бэлтгэлийн явцыг хянах"} />
             </div>
-            <div>
-                <div className='w-full flex justify-between mt-20'>
-                    <div className='flex gap-4 items-center'>
-                        <TitleIcon />
-                        <h1 className='font-bold text-2xl'>Хямдралтай</h1>
+            <div className='flex flex-col gap-8'>
+                <div className='flex flex-col gap-8'>
+                    <Category categoryTitle='Хямдралтай' />
+                    <div className='flex justify-between'>
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                    </div>
+                </div>
+                <div className='flex flex-col gap-8'>
+                    <Category categoryTitle='Үндсэн хоол' />
+                    <div className='flex justify-between'>
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                    </div>
+                </div>
+                <div className='flex flex-col gap-8'>
+                    <Category categoryTitle='Салад ба зууш' />
+                    <div className='flex justify-between'>
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                    </div>
+                </div>
+                <div className='flex flex-col gap-8'>
+                    <Category categoryTitle='Амттан' />
+                    <div className='flex justify-between'>
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
+                        <FoodsCard foodImage={<img src='FoodPic.png' />} discount={20} foodName='Өглөөний хоол' foodPrice={14800} discountPrice={16800} />
                     </div>
                 </div>
             </div>
