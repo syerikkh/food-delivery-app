@@ -50,3 +50,20 @@
 //         pass: password,
 //     },
 // })
+
+import express from 'express';
+import { carRouter } from './routes/carRoutes';
+import { connectToDb } from './connectToDb';
+
+const app = express();
+const PORT = 8000;
+connectToDb();
+app.use(express.json());
+app.use(carRouter);
+
+app.get('/', (req, res) => {
+    res.send('Hello World')
+});
+app.listen(PORT, () => {
+    console.log('Application is running at: http://localhost:' + PORT);
+})
