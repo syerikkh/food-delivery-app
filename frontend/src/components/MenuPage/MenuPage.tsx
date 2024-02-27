@@ -1,5 +1,5 @@
 import React from 'react'
-import { CategoryLabel } from '../CategoryLabel'
+import { CategoryLabel } from '../CategoryContainer'
 import { FoodsCard } from '../FoodsCard'
 
 export const MenuPage = () => {

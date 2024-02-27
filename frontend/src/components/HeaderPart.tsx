@@ -23,14 +23,14 @@ export const HeaderPart = () => {
                         <button><SearchIcon /></button>
                         <input type="text" name="" id="" placeholder="Хайх" className="p-2" />
                     </div>
-                    <div className="flex gap-2 font-bold items-center">
+                    <button className="flex gap-2 font-bold items-center">
                         <BasketIcon />
                         <p>Сагс</p>
-                    </div>
-                    <div className="flex gap-2 font-bold items-center">
+                    </button>
+                    <button className="flex gap-2 font-bold items-center">
                         <LogInIcon />
                         <p>Нэвтрэх</p>
-                    </div>
+                    </button>
                 </div>
             </div>
         </div >

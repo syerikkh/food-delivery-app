@@ -7,9 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <div>
       <title>Pinecone Food Delivery</title>
-      <HeaderPart />
       <Component {...pageProps} />
-      <FooterPart />
     </div>
   )
 }

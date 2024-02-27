@@ -54,12 +54,14 @@
 import express from 'express';
 import { carRouter } from './routes/carRoutes';
 import { connectToDb } from './connectToDb';
+import { userRouter } from './routes/userRoutes';
 
 const app = express();
 const PORT = 8000;
 connectToDb();
 app.use(express.json());
 app.use(carRouter);
+app.use(userRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World')
