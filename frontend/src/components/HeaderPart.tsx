@@ -3,6 +3,9 @@ import { PineconeLogo } from './Icons/PineconeLogo';
 import { BasketIcon } from './Icons/BasketIcon';
 import { LogInIcon } from './Icons/LogInIcon';
 import { SearchIcon } from './Icons/SearchIcon';
+import { Link } from 'react-router-dom';
+// import Link from 'next/link';
+
 // import { useLocation } from 'react-router-dom';
 
 export const HeaderPart = () => {
@@ -14,7 +17,7 @@ export const HeaderPart = () => {
                     <PineconeLogo />
                     <div className="flex text-sm font-bold gap-8 ml-8 ">
                         <p className='hover:text-[#18BA51] cursor-pointer'>НҮҮР</p>
-                        <p className='hover:text-[#18BA51] cursor-pointer'>ХООЛНЫ ЦЭС</p>
+                        <p className='hover:text-[#18BA51] cursor-pointer'>ХООЛНЫ ЦЭС </p>
                         <p className='hover:text-[#18BA51] cursor-pointer'>ХҮРГЭЛТИЙН БҮС</p>
                     </div>
                 </div>

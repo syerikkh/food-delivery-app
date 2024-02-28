@@ -4,6 +4,7 @@ import { HomeFirstPage } from "@/components/HomePage/HomeFirstPage";
 import { HomeMainPage } from "@/components/HomePage/HomeMainPage";
 import { MenuPage } from "@/components/MenuPage/MenuPage";
 import { LogInPage } from "@/components/Login/LogInPage";
+import { SignUpPage } from "@/components/SignUp/SignUpPage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +14,8 @@ export default function Home() {
       {/* <HomeFirstPage />
       <HomeMainPage /> */}
       {/* <MenuPage /> */}
-      <LogInPage />
+      {/* <LogInPage /> */}
+      <SignUpPage />
     </div>
 
   );
