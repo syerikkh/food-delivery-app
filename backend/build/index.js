@@ -50,13 +50,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const carRoutes_1 = require("./routes/carRoutes");
 const connectToDb_1 = require("./connectToDb");
-const userRoutes_1 = require("./routes/userRoutes");
+const authRoutes_1 = require("./routes/authRoutes");
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = 8000;
 (0, connectToDb_1.connectToDb)();
 app.use(express_1.default.json());
 app.use(carRoutes_1.carRouter);
-app.use(userRoutes_1.userRouter);
+app.use(authRoutes_1.authRouter);
 app.get('/', (req, res) => {
     res.send('Hello World');
 });

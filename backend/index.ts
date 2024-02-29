@@ -54,14 +54,16 @@
 import express from 'express';
 import { carRouter } from './routes/carRoutes';
 import { connectToDb } from './connectToDb';
-import { userRouter } from './routes/userRoutes';
+import { authRouter } from './routes/authRoutes';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 const PORT = 8000;
 connectToDb();
 app.use(express.json());
 app.use(carRouter);
-app.use(userRouter);
+app.use(authRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World')

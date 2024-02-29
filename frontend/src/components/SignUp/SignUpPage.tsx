@@ -18,10 +18,10 @@ export const SignUpPage = () => {
                 errors.name = 'Please enter your name'
             }
             if (!values.email) {
-                errors.email = 'Required'
+                errors.email = 'Please enter your email'
             }
             if (!values.password) {
-                errors.password = 'Required'
+                errors.password = 'Please enter your password'
             } else if (values.password.length < 8) {
                 errors.password = 'Your password must be at least 8 characters'
             }
@@ -67,6 +67,7 @@ export const SignUpPage = () => {
                                 value={formik.values.email}
                                 className='w-full h-12 border text-base px-4 py-2 rounded-md'
                             />
+                            {formik.errors.email && formik.touched.email ? <div className='text-red-500 '>{formik.errors.email}</div> : null}
                         </div>
                         <div className='flex flex-col gap-1'>
                             <p className='text-sm'>Password</p>
@@ -78,6 +79,7 @@ export const SignUpPage = () => {
                                 value={formik.values.password}
                                 className='w-full h-12 border text-base px-4 py-2 rounded-md'
                             />
+                            {formik.errors.password && formik.touched.password ? <div className='text-red-500 '>{formik.errors.password}</div> : null}
                         </div>
                         <div className='flex flex-col gap-1'>
                             <p className='text-sm'>Repeat Password</p>
@@ -89,6 +91,7 @@ export const SignUpPage = () => {
                                 value={formik.values.repeatPassword}
                                 className='w-full h-12 border text-base px-4 py-2 rounded-md'
                             />
+                            {formik.errors.repeatPassword && formik.touched.repeatPassword ? <div className='text-red-500 '>{formik.errors.repeatPassword}</div> : null}
                         </div>
                     </div>
                     <div className='w-full flex flex-col gap-6'>
@@ -96,8 +99,8 @@ export const SignUpPage = () => {
                             Бүртгүүлэх
                         </button>
                     </div>
-                </form>
-            </div>
+                </form >
+            </div >
             <FooterPart />
         </>
     )

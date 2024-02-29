@@ -12,12 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.createUser = exports.getUsers = void 0;
 const userModel_1 = require("../models/userModel");
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = userModel_1.UserModel.find();
+    const users = yield userModel_1.User.find();
     res.send(users);
 });
 exports.getUsers = getUsers;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const user = yield userModel_1.UserModel.create({ name: "Syerik", email: "ss@gmail.com", password: '1234', phoneNumber: 929292, role: "Customer" });
+    const user = yield userModel_1.User.create({ name: "Syerik", email: "sss@gmail.com", password: '1234', phoneNumber: '929292', role: "User" });
     res.send(user);
 });
 exports.createUser = createUser;
