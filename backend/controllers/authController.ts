@@ -3,8 +3,13 @@ import { User } from '../models/userModel';
 import bcrypt from 'bcrypt';
 
 export const getUsers = async (req: express.Request, res: express.Response) => {
-    const users = await User.find();
-    res.send(users);
+    try {
+        const users = await User.find();
+        res.send(users);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to get users" });
+    }
 }
 export const signUp = async (req: express.Request, res: express.Response) => {
     const { name, email, password, phoneNumber, role } = req.body;
@@ -12,7 +17,7 @@ export const signUp = async (req: express.Request, res: express.Response) => {
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
         const createUser = await User.create({ name, email, password: hashedPassword, phoneNumber, role });
-        res.status(201).json({ message: `${createUser.name} created successfully` });
+        res.status(200).json({ message: `${createUser.email} created successfully` });
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "User creation failed" })
@@ -33,7 +38,7 @@ export const logIn = async (req: express.Request, res: express.Response) => {
         if (!checkPassword) {
             return res.status(400).json({ messaage: "Invalid Password" })
         }
-        res.status(201).json({ message: "Successfully logged in" })
+        res.status(200).json({ message: "Successfully logged in" })
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "Log in failed" })

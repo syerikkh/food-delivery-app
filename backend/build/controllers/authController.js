@@ -16,8 +16,14 @@ exports.logIn = exports.signUp = exports.getUsers = void 0;
 const userModel_1 = require("../models/userModel");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const users = yield userModel_1.User.find();
-    res.send(users);
+    try {
+        const users = yield userModel_1.User.find();
+        res.send(users);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to get users" });
+    }
 });
 exports.getUsers = getUsers;
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -25,7 +31,7 @@ const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
         const createUser = yield userModel_1.User.create({ name, email, password: hashedPassword, phoneNumber, role });
-        res.status(201).json({ message: `${createUser.name} created successfully` });
+        res.status(200).json({ message: `${createUser.email} created successfully` });
     }
     catch (error) {
         console.error(error);
@@ -47,7 +53,7 @@ const logIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!checkPassword) {
             return res.status(400).json({ messaage: "Invalid Password" });
         }
-        res.status(201).json({ message: "Successfully logged in" });
+        res.status(200).json({ message: "Successfully logged in" });
     }
     catch (error) {
         console.error(error);
