@@ -1,6 +1,9 @@
 import express from 'express';
 import { User } from '../models/userModel';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
+const secretKey = process.env.SECRET_KEY as string;
 
 export const getUsers = async (req: express.Request, res: express.Response) => {
     try {
@@ -38,7 +41,16 @@ export const logIn = async (req: express.Request, res: express.Response) => {
         if (!checkPassword) {
             return res.status(400).json({ messaage: "Invalid Password" })
         }
-        res.status(200).json({ message: "Successfully logged in" })
+
+        const accessToken = jwt.sign({ id: user._id }, secretKey, { expiresIn: '1h' });
+        const refreshToken = jwt.sign({ id: user._id }, secretKey, { expiresIn: '1d' })
+
+        res
+            .status(200)
+            .cookie('refreshToken', refreshToken)
+            .header('authToken', accessToken)
+            .send({ user, message: 'Successfully logged in' })
+
     } catch (error) {
         console.error(error);
         res.status(400).json({ error: "Log in failed" })

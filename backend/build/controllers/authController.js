@@ -15,6 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.logIn = exports.signUp = exports.getUsers = void 0;
 const userModel_1 = require("../models/userModel");
 const bcrypt_1 = __importDefault(require("bcrypt"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const secretKey = process.env.SECRET_KEY;
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const users = yield userModel_1.User.find();
@@ -53,7 +55,13 @@ const logIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!checkPassword) {
             return res.status(400).json({ messaage: "Invalid Password" });
         }
-        res.status(200).json({ message: "Successfully logged in" });
+        const accessToken = jsonwebtoken_1.default.sign({ id: user._id }, secretKey, { expiresIn: '1h' });
+        const refreshToken = jsonwebtoken_1.default.sign({ id: user._id }, secretKey, { expiresIn: '1d' });
+        res
+            .status(200)
+            .cookie('refreshToken', refreshToken)
+            .header('authToken', accessToken)
+            .send({ user, message: 'Successfully logged in' });
     }
     catch (error) {
         console.error(error);
