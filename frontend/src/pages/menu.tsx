@@ -1,10 +1,10 @@
-// import { MenuPage } from '@/components/MenuPage/MenuPage'
-// import React from 'react'
+import { MenuPage } from '@/components/MenuPage/MenuPage'
+import React from 'react'
 
-// const menu = () => {
-//     return (
-//         <MenuPage />
-//     )
-// }
+const Menu = () => {
+    return (
+        <MenuPage />
+    )
+}
 
-// export default menu
+export default Menu
