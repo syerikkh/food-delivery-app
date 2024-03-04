@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { HeaderPart } from '../HeaderPart'
 import { FooterPart } from '../FooterPart'
 import { useFormik } from 'formik'
+import { EyeIcon } from '../Icons/EyeIcon'
+import { EyeSlashIcon } from '../Icons/EyeSlashIcon'
 
 export const SignUpPage = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [repeatIsVisible, setRepeatIsVisible] = useState(false);
+
+
+    const toggleVisibility = () => {
+        setIsVisible(!isVisible);
+    }
+    const toggleRepeatIsVisible = () => {
+        setRepeatIsVisible(!repeatIsVisible);
+    }
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -28,7 +41,7 @@ export const SignUpPage = () => {
             if (!values.repeatPassword) {
                 errors.repeatPassword = 'Required'
             } else if (values.password !== values.repeatPassword) {
-                errors.repeatPassword = 'Your passwords do not match'
+                errors.repeatPassword = 'Your passwords must match'
             }
 
             return errors;
@@ -46,56 +59,61 @@ export const SignUpPage = () => {
                     <h1 className='text-2xl font-bold text-[#0D1118]'>Бүртгүүлэх</h1>
                     <div className='w-full flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
-                            <p className='text-sm'>Name</p>
+                            <p className='text-sm'>Нэр</p>
                             <input
                                 name="name"
                                 type="text"
                                 placeholder='Нэрээ оруулна уу'
                                 onChange={formik.handleChange}
+
                                 value={formik.values.name}
                                 className='w-full h-12 border text-base px-4 py-2 rounded-md'
                             />
                             {formik.errors.name && formik.touched.name ? <div className='text-red-500 '>{formik.errors.name}</div> : null}
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <p className='text-sm'>E-mail</p>
+                            <p className='text-sm'>И-мэйл</p>
                             <input
                                 name="email"
                                 type="email"
                                 placeholder='И-мэйл хаягаа оруулна уу'
                                 onChange={formik.handleChange}
+
                                 value={formik.values.email}
                                 className='w-full h-12 border text-base px-4 py-2 rounded-md'
                             />
                             {formik.errors.email && formik.touched.email ? <div className='text-red-500 '>{formik.errors.email}</div> : null}
                         </div>
-                        <div className='flex flex-col gap-1'>
-                            <p className='text-sm'>Password</p>
+                        <div className='flex flex-col gap-1 relative'>
+                            <p className='text-sm'>Нууц үг</p>
                             <input
                                 name="password"
-                                type="password"
+                                type={isVisible ? "text" : "password"}
                                 placeholder='Нууц үгээ оруулна уу'
                                 onChange={formik.handleChange}
+
                                 value={formik.values.password}
-                                className='w-full h-12 border text-base px-4 py-2 rounded-md'
+                                className='w-full h-12 border text-base px-4 py-2 rounded-md '
                             />
+                            <button onClick={toggleVisibility} className='absolute right-2 top-9'>{isVisible ? <EyeSlashIcon /> : <EyeIcon />}</button>
                             {formik.errors.password && formik.touched.password ? <div className='text-red-500 '>{formik.errors.password}</div> : null}
                         </div>
-                        <div className='flex flex-col gap-1'>
-                            <p className='text-sm'>Repeat Password</p>
+                        <div className='flex flex-col gap-1 relative'>
+                            <p className='text-sm'>Нууц үг давтах</p>
                             <input
                                 name="repeatPassword"
-                                type="password"
+                                type={repeatIsVisible ? "text" : "password"}
                                 placeholder='Нууц үгээ оруулна уу'
                                 onChange={formik.handleChange}
                                 value={formik.values.repeatPassword}
                                 className='w-full h-12 border text-base px-4 py-2 rounded-md'
                             />
+                            <button onClick={toggleRepeatIsVisible} className='absolute right-2 top-9'>{repeatIsVisible ? <EyeSlashIcon /> : <EyeIcon />}</button>
                             {formik.errors.repeatPassword && formik.touched.repeatPassword ? <div className='text-red-500 '>{formik.errors.repeatPassword}</div> : null}
                         </div>
                     </div>
                     <div className='w-full flex flex-col gap-6'>
-                        <button type='submit' className='w-full h-12 px-4 py-2 border border-main flex justify-center rounded-md'>
+                        <button type='submit' className={`w-full h-12 px-4 py-2 border flex justify-center rounded-md ${formik.values.name && formik.values.email && formik.values.password && formik.values.repeatPassword ? 'bg-main text-white' : 'border-main'}`}>
                             Бүртгүүлэх
                         </button>
                     </div>

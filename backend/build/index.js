@@ -51,6 +51,7 @@ const express_1 = __importDefault(require("express"));
 const carRoutes_1 = require("./routes/carRoutes");
 const connectToDb_1 = require("./connectToDb");
 const authRoutes_1 = require("./routes/authRoutes");
+const foodRoutes_1 = require("./routes/foodRoutes");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const app = (0, express_1.default)();
@@ -59,6 +60,7 @@ const PORT = 8000;
 app.use(express_1.default.json());
 app.use(carRoutes_1.carRouter);
 app.use(authRoutes_1.authRouter);
+app.use(foodRoutes_1.foodRouter);
 app.get('/', (req, res) => {
     res.send('Hello World');
 });

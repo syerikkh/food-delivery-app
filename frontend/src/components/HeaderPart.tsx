@@ -3,8 +3,8 @@ import { PineconeLogo } from './Icons/PineconeLogo';
 import { BasketIcon } from './Icons/BasketIcon';
 import { LogInIcon } from './Icons/LogInIcon';
 import { SearchIcon } from './Icons/SearchIcon';
-import { Link } from 'react-router-dom';
-// import Link from 'next/link';
+// import { Link } from 'react-router-dom';
+import Link from 'next/link';
 
 // import { useLocation } from 'react-router-dom';
 
@@ -16,8 +16,8 @@ export const HeaderPart = () => {
                 <div className="flex gap-3 items-center">
                     <PineconeLogo />
                     <div className="flex text-sm font-bold gap-8 ml-8 ">
-                        <p className='hover:text-[#18BA51] cursor-pointer'>НҮҮР</p>
-                        <p className='hover:text-[#18BA51] cursor-pointer'>ХООЛНЫ ЦЭС </p>
+                        <Link href={'/home'} className='hover:text-[#18BA51] cursor-pointer'>НҮҮР</Link>
+                        <Link href={'/menu'} className='hover:text-[#18BA51] cursor-pointer'>ХООЛНЫ ЦЭС </Link>
                         <p className='hover:text-[#18BA51] cursor-pointer'>ХҮРГЭЛТИЙН БҮС</p>
                     </div>
                 </div>
@@ -32,7 +32,7 @@ export const HeaderPart = () => {
                     </button>
                     <button className="flex gap-2 font-bold items-center">
                         <LogInIcon />
-                        <p>Нэвтрэх</p>
+                        <Link href={'/logIn'}>Нэвтрэх</Link >
                     </button>
                 </div>
             </div>

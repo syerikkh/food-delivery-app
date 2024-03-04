@@ -1,5 +1,5 @@
 import React from 'react'
-import { CategoryLabel } from '../CategoryContainer'
+import { CategoryContainer } from '../CategoryContainer'
 import { FoodsCard } from '../FoodsCard'
 
 export const MenuPage = () => {
@@ -7,10 +7,10 @@ export const MenuPage = () => {
         <div className='w-[1440px] m-auto px-10'>
             <div className='px-30 py-8'>
                 <div className='flex justify-between'>
-                    <CategoryLabel categoryName='Breakfast' />
-                    <CategoryLabel categoryName='Soup' />
-                    <CategoryLabel categoryName='Main Course' />
-                    <CategoryLabel categoryName='Dessert' />
+                    <CategoryContainer categoryName='Breakfast' />
+                    <CategoryContainer categoryName='Soup' />
+                    <CategoryContainer categoryName='Main Course' />
+                    <CategoryContainer categoryName='Dessert' />
                 </div>
             </div>
             <div className='flex flex-col gap-10 mt-10 mb-20'>
