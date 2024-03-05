@@ -15,11 +15,11 @@ export const getUsers = async (req: express.Request, res: express.Response) => {
     }
 }
 export const signUp = async (req: express.Request, res: express.Response) => {
-    const { name, email, password, phoneNumber, role } = req.body;
+    const { name, email, phoneNumber, password } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const createUser = await User.create({ name, email, password: hashedPassword, phoneNumber, role });
+        const createUser = await User.create({ name, email, phoneNumber, password: hashedPassword });
         res.status(200).json({ message: `${createUser.email} created successfully` });
     } catch (error) {
         console.error(error);

@@ -2,13 +2,23 @@ import React, { useState } from 'react'
 import { FooterPart } from '../FooterPart'
 import { HeaderPart } from '../HeaderPart'
 import Link from 'next/link';
+import axios from 'axios';
 
 export const LogInPage = () => {
-    const [mail, setMail] = useState('');
+    const [email, setMail] = useState('');
     const [pass, setPass] = useState('');
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMail(event.target.value);
+    }
+
+    const handleLogIn = async () => {
+        try {
+            const response = await axios.post('http://localhost:8000/logIn', { email, pass });
+            console.log('data', response.data)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
@@ -20,7 +30,7 @@ export const LogInPage = () => {
                     <div className='w-full flex flex-col gap-2'>
                         <div className='flex flex-col gap-1'>
                             <p className='text-sm'>Имэйл </p>
-                            <input value={mail} onChange={handleChange} className='w-full h-12 border text-base px-4 py-2 rounded-md' type="text" placeholder='Имэйл хаягаа оруулна уу' />
+                            <input value={email} onChange={handleChange} className='w-full h-12 border text-base px-4 py-2 rounded-md' type="email" placeholder='Имэйл хаягаа оруулна уу' />
                         </div>
                         <div className='flex flex-col gap-1'>
                             <p className='text-sm'>Нууц үг </p>
@@ -29,7 +39,7 @@ export const LogInPage = () => {
                         </div>
                     </div>
                     <div className='w-full flex flex-col gap-6'>
-                        <button className={`w-full h-12 px-4 py-2 border flex justify-center rounded-md ${mail ? 'bg-main text-white' : 'text-[#1C20243D] bg-[#EEEFF2]'}`}>
+                        <button onClick={handleLogIn} className={`w-full h-12 px-4 py-2 border flex justify-center rounded-md ${email ? 'bg-main text-white' : 'text-[#1C20243D] bg-[#EEEFF2]'}`}>
                             Нэвтрэх
                         </button>
                         <div className='w-full h-12 px-4 py-2 flex justify-center'>

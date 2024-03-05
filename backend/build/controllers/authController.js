@@ -29,10 +29,10 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUsers = getUsers;
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, email, password, phoneNumber, role } = req.body;
+    const { name, email, phoneNumber, password } = req.body;
     try {
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
-        const createUser = yield userModel_1.User.create({ name, email, password: hashedPassword, phoneNumber, role });
+        const createUser = yield userModel_1.User.create({ name, email, phoneNumber, password: hashedPassword });
         res.status(200).json({ message: `${createUser.email} created successfully` });
     }
     catch (error) {
