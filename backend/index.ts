@@ -55,17 +55,19 @@ import express from 'express';
 import { carRouter } from './routes/carRoutes';
 import { connectToDb } from './connectToDb';
 import { authRouter } from './routes/authRoutes';
-import { foodRouter } from './routes/foodRoutes'
+import cors from 'cors';
+// import { foodRouter } from './routes/foodRoutes'
 import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
+app.use(cors());
 const PORT = 8000;
 connectToDb();
 app.use(express.json());
 app.use(carRouter);
 app.use(authRouter);
-app.use(foodRouter)
+// app.use(foodRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello World')

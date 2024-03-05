@@ -7,10 +7,8 @@ import React from 'react'
 const Home = () => {
     return (
         <>
-
             <HomeFirstPage />
             <HomeMainPage />
-
         </>
 
     )

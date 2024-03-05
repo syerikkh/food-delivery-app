@@ -4,6 +4,7 @@ import { FooterPart } from '../FooterPart'
 import { useFormik } from 'formik'
 import { EyeIcon } from '../Icons/EyeIcon'
 import { EyeSlashIcon } from '../Icons/EyeSlashIcon'
+import axios from 'axios'
 
 export const SignUpPage = () => {
     const [isVisible, setIsVisible] = useState(false);
@@ -47,8 +48,13 @@ export const SignUpPage = () => {
             return errors;
         },
 
-        onSubmit: values => {
-            console.log('values', values)
+        onSubmit: async values => {
+            try {
+                const res = await axios.post('http://localhost:8000/signUp', values);
+                console.log('data', res.data)
+            } catch (error) {
+                console.error(error)
+            }
         }
     })
     return (
