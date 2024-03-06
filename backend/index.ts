@@ -55,6 +55,7 @@ import express from 'express';
 import { carRouter } from './routes/carRoutes';
 import { connectToDb } from './connectToDb';
 import { authRouter } from './routes/authRoutes';
+import { categoryRouter } from './routes/categoryRoutes';
 import cors from 'cors';
 import { foodRouter } from './routes/foodRoutes'
 import dotenv from 'dotenv';
@@ -67,7 +68,8 @@ connectToDb();
 app.use(express.json());
 app.use(carRouter);
 app.use(authRouter);
-app.use(foodRouter)
+app.use(foodRouter);
+app.use(categoryRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World')

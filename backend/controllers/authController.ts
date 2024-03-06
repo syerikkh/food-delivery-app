@@ -2,6 +2,8 @@ import express from 'express';
 import { User } from '../models/userModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const secretKey = process.env.SECRET_KEY as string;
 
@@ -15,19 +17,6 @@ export const getUsers = async (req: express.Request, res: express.Response) => {
     }
 }
 
-export const verifyAccessToken = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const authToken = req.headers['authorization'];
-    if (!authToken) {
-        return res.status(401).json({ error: "Token not found" })
-    }
-    jwt.verify(authToken, secretKey, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ error: "Invalid token" })
-        }
-        req.body.userId = decoded.id;
-        return next();
-    })
-}
 export const signUp = async (req: express.Request, res: express.Response) => {
     const { name, email, phoneNumber, password } = req.body;
 

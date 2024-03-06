@@ -16,6 +16,8 @@ exports.logIn = exports.signUp = exports.getUsers = void 0;
 const userModel_1 = require("../models/userModel");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const secretKey = process.env.SECRET_KEY;
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

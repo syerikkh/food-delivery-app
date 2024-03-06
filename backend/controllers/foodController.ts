@@ -3,11 +3,22 @@ import cloudinary from '../utils/cloudinary';
 import { Food } from '../models/foodModel';
 
 export const getFoods = async (req: express.Request, res: express.Response) => {
-
+    const foods = await Food.find();
+    res.send(foods)
 };
 
+// export const deleteFoods = async (req: express.Request, res: express.Response) => {
+//     try {
+//         await Food.deleteMany({ name: true });
+//         res.status(201).json({ message: "Deleted successfully" })
+//     } catch (error) {
+//         console.error(error);
+//         res.status(400).json({ error: "Failed to delete" })
+//     }
+// }
+
 export const createFood = async (req: express.Request, res: express.Response) => {
-    const { name, image, ingredient, price } = req.body;
+    const { name, ingredient, price } = req.body;
     const foodImage = req.file;
     if (!foodImage) {
         return res.status(400).json({ message: "Please upload file" })

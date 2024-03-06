@@ -14,7 +14,7 @@ export const LogInPage = () => {
 
     const handleLogIn = async () => {
         try {
-            const response = await axios.post('http://localhost:8000/logIn', { email, pass });
+            const response = await axios.post('http://localhost:8000/logIn', { email: email, password: pass });
             console.log('data', response.data)
         } catch (error) {
             console.error(error)

@@ -16,10 +16,21 @@ exports.createFood = exports.getFoods = void 0;
 const cloudinary_1 = __importDefault(require("../utils/cloudinary"));
 const foodModel_1 = require("../models/foodModel");
 const getFoods = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const foods = yield foodModel_1.Food.find();
+    res.send(foods);
 });
 exports.getFoods = getFoods;
+// export const deleteFoods = async (req: express.Request, res: express.Response) => {
+//     try {
+//         await Food.deleteMany({ name: true });
+//         res.status(201).json({ message: "Deleted successfully" })
+//     } catch (error) {
+//         console.error(error);
+//         res.status(400).json({ error: "Failed to delete" })
+//     }
+// }
 const createFood = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, image, ingredient, price } = req.body;
+    const { name, ingredient, price } = req.body;
     const foodImage = req.file;
     if (!foodImage) {
         return res.status(400).json({ message: "Please upload file" });
