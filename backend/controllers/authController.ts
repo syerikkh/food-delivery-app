@@ -14,6 +14,20 @@ export const getUsers = async (req: express.Request, res: express.Response) => {
         res.status(500).json({ error: "Failed to get users" });
     }
 }
+
+export const verifyAccessToken = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    const authToken = req.headers['authorization'];
+    if (!authToken) {
+        return res.status(401).json({ error: "Token not found" })
+    }
+    jwt.verify(authToken, secretKey, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({ error: "Invalid token" })
+        }
+        req.body.userId = decoded.id;
+        return next();
+    })
+}
 export const signUp = async (req: express.Request, res: express.Response) => {
     const { name, email, phoneNumber, password } = req.body;
 
