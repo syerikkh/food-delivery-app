@@ -18,11 +18,11 @@ export const getUsers = async (req: express.Request, res: express.Response) => {
 }
 
 export const signUp = async (req: express.Request, res: express.Response) => {
-    const { name, email, phoneNumber, password } = req.body;
+    const { name, email, phoneNumber, password, role } = req.body;
 
     try {
         const hashedPassword = await bcrypt.hash(password, 10);
-        const createUser = await User.create({ name, email, phoneNumber, password: hashedPassword });
+        const createUser = await User.create({ name, email, phoneNumber, password: hashedPassword, role });
         res.status(200).json({ message: `${createUser.email} created successfully` });
     } catch (error) {
         console.error(error);
@@ -51,7 +51,7 @@ export const logIn = async (req: express.Request, res: express.Response) => {
         res
             .status(200)
             .cookie('refreshToken', refreshToken)
-            .header('authToken', accessToken)
+            .cookie('accessToken', accessToken)
             .send({ user, message: 'Successfully logged in' })
 
     } catch (error) {

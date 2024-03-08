@@ -31,10 +31,10 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUsers = getUsers;
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, email, phoneNumber, password } = req.body;
+    const { name, email, phoneNumber, password, role } = req.body;
     try {
         const hashedPassword = yield bcrypt_1.default.hash(password, 10);
-        const createUser = yield userModel_1.User.create({ name, email, phoneNumber, password: hashedPassword });
+        const createUser = yield userModel_1.User.create({ name, email, phoneNumber, password: hashedPassword, role });
         res.status(200).json({ message: `${createUser.email} created successfully` });
     }
     catch (error) {
@@ -62,7 +62,7 @@ const logIn = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res
             .status(200)
             .cookie('refreshToken', refreshToken)
-            .header('authToken', accessToken)
+            .cookie('accessToken', accessToken)
             .send({ user, message: 'Successfully logged in' });
     }
     catch (error) {
