@@ -3,10 +3,12 @@ import { FooterPart } from '../FooterPart'
 import { HeaderPart } from '../HeaderPart'
 import Link from 'next/link';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export const LogInPage = () => {
     const [email, setMail] = useState('');
     const [pass, setPass] = useState('');
+    const router = useRouter();
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMail(event.target.value);
@@ -16,6 +18,7 @@ export const LogInPage = () => {
         try {
             const response = await axios.post('http://localhost:8000/logIn', { email: email, password: pass }, { withCredentials: true });
             console.log('Successfully logged in', response.data)
+            router.push('')
         } catch (error) {
             console.error("Login failed", error)
         }
