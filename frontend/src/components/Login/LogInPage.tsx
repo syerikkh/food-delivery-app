@@ -4,13 +4,11 @@ import { HeaderPart } from '../HeaderPart'
 import Link from 'next/link';
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import { UserContext } from '../contexts/UserContext';
 
 export const LogInPage = () => {
     const [email, setMail] = useState('');
     const [pass, setPass] = useState('');
     const router = useRouter();
-    // const userContext = React.useContext(UserContext);
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setMail(event.target.value);
@@ -19,8 +17,9 @@ export const LogInPage = () => {
     const handleLogIn = async () => {
         try {
             const response = await axios.post('http://localhost:8000/logIn', { email: email, password: pass }, { withCredentials: true });
-            // userContext = response.data;
-            console.log('Successfully logged in', response.data)
+            const userData = response.data.user;
+            localStorage.setItem('user', JSON.stringify(userData));
+            console.log('Successfully logged in', response.data.user.name)
             router.push('/')
         } catch (error) {
             console.error("Login failed", error)
