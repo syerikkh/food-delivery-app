@@ -30,6 +30,15 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUsers = getUsers;
+// export const deleteUsers = async (req: express.Request, res: express.Response) => {
+//     try {
+//         await User.deleteMany({ role: "User" });
+//         res.status(200).json({ message: "Deleted successfully" })
+//     } catch (error) {
+//         console.error(error);
+//         res.status(400).json({ error: "Failed to delete" })
+//     }
+// }
 const signUp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name, email, phoneNumber, password, role } = req.body;
     try {

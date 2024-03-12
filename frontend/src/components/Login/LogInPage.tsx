@@ -20,6 +20,9 @@ export const LogInPage = () => {
             const userData = response.data.user;
             localStorage.setItem('user', JSON.stringify(userData));
             console.log('Successfully logged in', response.data.user.name)
+            if (userData.role === "Admin") {
+                router.push('/admin')
+            }
             router.push('/')
         } catch (error) {
             console.error("Login failed", error)

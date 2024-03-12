@@ -74,7 +74,8 @@ export const SignUpPage = () => {
                     values.repeatPassword = ''
                 }
             } catch (error) {
-                console.error(error)
+                console.error("sign up failed", error);
+                alert("This email already exists")
             }
         }
     })

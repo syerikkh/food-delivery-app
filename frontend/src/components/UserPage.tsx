@@ -3,6 +3,9 @@ import { HeaderPart } from './HeaderPart'
 import { FooterPart } from './FooterPart'
 import { LogOutIcon } from './Icons/LogOutIcon'
 import { useRouter } from 'next/router'
+import { ProfileIcon } from './Icons/ProfileIcon'
+import { ContactIcon } from './Icons/ContactIcon'
+import { MailIcon } from './Icons/MailIcon'
 
 
 export const UserPage = () => {
@@ -34,23 +37,35 @@ export const UserPage = () => {
             <HeaderPart />
             <div className='flex justify-center items-center w-[1440px] px-10 m-auto mt-20 mb-16'>
                 <div className='w-[448px] h-[549px] p-8 flex flex-col gap-12 items-center'>
-                    <h1 className='text-2xl font-bold text-[#0D1118]'></h1>
-                    <div className='w-full flex flex-col gap-2'>
-                        <div className='flex flex-col gap-1'>
-                            {user.name}
+                    <h1 className='text-2xl font-bold text-[#0D1118]'> {user.name}</h1>
+                    <div className='w-full flex flex-col gap-3'>
+                        <div className='flex gap-2 border py-2 px-5 bg-[#F6F6F6] rounded-sm'>
+                            <div className='p-3 rounded-full bg-white'><ProfileIcon /></div>
+                            <div>
+                                <p className='text-xs text-[#888A99]'>Таны нэр</p>
+                                {user.name}
+                            </div>
                         </div>
-                        <div className='flex flex-col gap-1'>
-                            {user.phoneNumber}
+                        <div className='flex gap-2 border py-2 px-5 bg-[#F6F6F6] rounded-sm'>
+                            <div className='p-3 rounded-full bg-white'><ContactIcon /></div>
+                            <div>
+                                <p className='text-xs text-[#888A99]'>Утасны дугаар</p>
+                                {user.phoneNumber}
+                            </div>
                         </div>
-                    </div>
-                    <div className='w-full flex flex-col gap-6'>
-
-                        <div className='w-full h-12 px-4 py-2 flex justify-center'>
-                            Эсвэл
+                        <div className='flex gap-2 border py-2 px-5 bg-[#F6F6F6] rounded-sm'>
+                            <div className='p-3 rounded-full bg-white'><MailIcon /></div>
+                            <div>
+                                <p className='text-xs text-[#888A99]'>Имэйл хаяг</p>
+                                {user.email}
+                            </div>
                         </div>
-                        <button onClick={handleLogOut}>
-                            <LogOutIcon />
-                        </button>
+                        <div className='flex gap-2 items-center'>
+                            <button className='border p-3 rounded-full' onClick={handleLogOut}>
+                                <LogOutIcon />
+                            </button>
+                            Гарах
+                        </div>
                     </div>
                 </div>
             </div>
