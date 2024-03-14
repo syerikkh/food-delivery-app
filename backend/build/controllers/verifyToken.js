@@ -13,8 +13,8 @@ const verifyAccessToken = (req, res, next) => {
     if (!authToken) {
         return res.status(401).json({ error: "Token not found" });
     }
-    // const token = authToken && authToken.split(' ')[1];
-    jsonwebtoken_1.default.verify(authToken, secretKey, (err, decoded) => {
+    const token = authToken && authToken.split(' ')[1];
+    jsonwebtoken_1.default.verify(token, secretKey, (err, decoded) => {
         if (err) {
             return res.status(401).json({ error: "Invalid token" });
         }

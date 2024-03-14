@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { HeaderPart } from '../HeaderPart'
 import { FooterPart } from '../FooterPart'
 import { Category } from '../Category'
@@ -8,10 +8,24 @@ import { FoodCategoryLabel } from '../FoodCategoryLabel'
 import { FoodsCard } from '../FoodsCard'
 import { CreateFoodCard } from '../CreateFoodCard'
 import { CreateCategoryCard } from '../CreateCategoryCard'
+import { GetStaticProps } from 'next'
+import axios from 'axios'
+import { any } from 'prop-types'
+
 
 export const CrudPage = () => {
     const [foodCardVisible, setFoodCardVisible] = useState(false);
     const [categoryCardVisible, setCategoryCardVisible] = useState(false);
+    const [categoryData, setCategoryData] = useState([]);
+
+
+    const fetchCategoryData = async () => {
+        const response = await axios.get("http://localhost:8000/category");
+        setCategoryData(response.data);
+    }
+    useEffect(() => {
+        fetchCategoryData();
+    }, [])
 
     return (
         <div>
@@ -22,8 +36,7 @@ export const CrudPage = () => {
                 <div className='flex flex-col gap-5'>
                     <h1 className='text-xl font-bold'>Food menu</h1>
                     <div className='flex flex-col gap-5'>
-                        <FoodCategoryLabel name={"Breakfast"} />
-                        <FoodCategoryLabel name={"Breakfast"} />
+                        {categoryData.map((category) => <FoodCategoryLabel name={category.name} />)}
                     </div>
                     <button onClick={() => { setCategoryCardVisible(!categoryCardVisible) }} className='px-4 hover:bg-main text-[#5E6166] hover:text-white py-2 border w-[280px] h-[43px] rounded-lg font-medium cursor-pointer flex justify-between items-center'>
                         Create New Category

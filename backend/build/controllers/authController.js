@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logIn = exports.signUp = exports.getUsers = void 0;
+exports.logIn = exports.signUp = exports.verifyUsers = exports.getUsers = void 0;
 const userModel_1 = require("../models/userModel");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -30,6 +30,22 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getUsers = getUsers;
+const verifyUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const users = yield userModel_1.User.find();
+        if (users) {
+            res.status(200).json({ message: "Welcome admin", users });
+        }
+        else {
+            res.status(400).json({ error: "Failed" });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to get users" });
+    }
+});
+exports.verifyUsers = verifyUsers;
 // export const deleteUsers = async (req: express.Request, res: express.Response) => {
 //     try {
 //         await User.deleteMany({ role: "User" });

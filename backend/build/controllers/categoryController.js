@@ -9,12 +9,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createCategory = void 0;
+exports.createCategory = exports.getCategories = void 0;
 const categoryModel_1 = require("../models/categoryModel");
-const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name, foodId } = req.body;
+const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const category = yield categoryModel_1.Category.create({ name, foodId });
+        const category = yield categoryModel_1.Category.find();
+        res.send(category);
+    }
+    catch (error) {
+        console.error(error);
+        res.status(400).json({ error: "Failed to get category" });
+    }
+});
+exports.getCategories = getCategories;
+const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = req.body;
+    try {
+        const category = yield categoryModel_1.Category.create({ name });
         res.status(201).json({ message: "Succeessfully created category", category });
     }
     catch (error) {

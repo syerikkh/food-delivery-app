@@ -17,6 +17,21 @@ export const getUsers = async (req: express.Request, res: express.Response) => {
     }
 }
 
+export const verifyUsers = async (req: express.Request, res: express.Response) => {
+    try {
+        const users = await User.find();
+        if (users) {
+            res.status(200).json({ message: "Welcome admin", users })
+        } else {
+            res.status(400).json({ error: "Failed" })
+        }
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Failed to get users" });
+    }
+}
+
 // export const deleteUsers = async (req: express.Request, res: express.Response) => {
 //     try {
 //         await User.deleteMany({ role: "User" });

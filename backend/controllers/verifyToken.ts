@@ -14,9 +14,9 @@ export const verifyAccessToken = (req: AuthenticatedRequest, res: Response, next
     if (!authToken) {
         return res.status(401).json({ error: "Token not found" })
     }
-    // const token = authToken && authToken.split(' ')[1];
+    const token = authToken && authToken.split(' ')[1];
 
-    jwt.verify(authToken, secretKey, (err: any, decoded: any) => {
+    jwt.verify(token, secretKey, (err: any, decoded: any) => {
         if (err) {
             return res.status(401).json({ error: "Invalid token" })
         }

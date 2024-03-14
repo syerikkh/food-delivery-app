@@ -9,14 +9,4 @@ exports.authRouter = authRouter;
 authRouter.get('/users', authController_1.getUsers);
 authRouter.post('/signUp', authController_1.signUp);
 authRouter.post('/logIn', authController_1.logIn);
-authRouter.get('/admin', verifyToken_1.verifyAccessToken, (req, res, next) => {
-    const user = req.user;
-    if (user && user.role === 'Admin') {
-        next();
-    }
-    else {
-        res.status(403).json({ error: 'Unauthorized: Access forbidden' });
-    }
-}, (req, res) => {
-    res.send('Welcome to admin panel');
-});
+authRouter.get('/admin', verifyToken_1.verifyAccessToken, authController_1.verifyUsers);

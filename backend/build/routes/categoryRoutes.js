@@ -5,4 +5,4 @@ const express_1 = require("express");
 const categoryController_1 = require("../controllers/categoryController");
 const categoryRouter = (0, express_1.Router)();
 exports.categoryRouter = categoryRouter;
-categoryRouter.post('/category', categoryController_1.createCategory);
+categoryRouter.post('/category', categoryController_1.createCategory).get('/category', categoryController_1.getCategories);
